@@ -34,8 +34,8 @@ export default function EcommercePortfolio() {
 
   const projects = [
     {
-      title: "Valocity Bank – Fintech Platform",
-      link: "https://valocity-bank.com",
+      title: "Velocity Bank – Fintech Platform",
+      link: "https://velocity-bank.com",
       image: "https://images.unsplash.com/photo-1556740738-b6a63e27c4df"
     },
     {
