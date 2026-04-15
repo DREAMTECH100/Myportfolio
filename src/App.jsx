@@ -33,20 +33,23 @@ export default function EcommercePortfolio() {
   };
 
   const projects = [
-    {
-      title: "Velocity Bank – Fintech Platform",
-      link: "https://velocity-bank.com",
-      image: "https://images.unsplash.com/photo-1556740738-b6a63e27c4df"
-    },
-    {
-      title: "YSG Courier – Logistics Platform",
-      link: "https://ysgcourier.com",
-      image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d"
-    },
+
 {
       title: "FRAGRANCE SOLUTION – E-commerce Platform",
       link: "https://fragrancesolution.com",
       image: "https://images.unsplash.com/photo-1594035910387-fea47794261f"
+    },
+
+ {
+      title: "YSG Courier – Logistics Platform",
+      link: "https://ysgcourier.com",
+      image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d"
+    },
+
+{
+      title: "Velocity Bank – Fintech Platform",
+      link: "https://velocity-bank.com",
+      image: "https://images.unsplash.com/photo-1556740738-b6a63e27c4df"
     },
 
     {
