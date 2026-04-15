@@ -43,6 +43,12 @@ export default function EcommercePortfolio() {
       link: "https://ysgcourier.com",
       image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d"
     },
+{
+      title: "FRAGRANCE SOLUTION – E-commerce Platform",
+      link: "https://fragrancesolution.com",
+      image: "https://images.unsplash.com/photo-1594035910387-fea47794261f"
+    },
+
     {
       title: "PIEI Associates – Corporate Website",
       link: "https://pieiassociatesltd.com",
