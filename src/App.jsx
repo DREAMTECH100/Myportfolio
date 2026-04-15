@@ -175,12 +175,12 @@ export default function EcommercePortfolio() {
         <h2>Let’s Work Together</h2>
 
         <div style={styles.buttonGroup}>
-          <a href="mailto:your@email.com" style={styles.primaryBtn}>
+          <a href="mailto:onoskelvin100@gmail.com" style={styles.primaryBtn}>
             Email Me
           </a>
 
           <a
-            href="https://wa.me/2340000000000"
+            href="https://wa.me/2347065446743"
             target="_blank"
             rel="noopener noreferrer"
             style={styles.secondaryBtn}
