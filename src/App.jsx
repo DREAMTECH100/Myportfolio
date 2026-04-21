@@ -485,7 +485,8 @@ navLinkBtn: {
   },
 
   footerLogo: {
-    height: "40px",
+    height: "112px",
+    width: "112px",
     marginBottom: "10px"
   },
 
