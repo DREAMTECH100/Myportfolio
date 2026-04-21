@@ -243,7 +243,7 @@ export default function EcommercePortfolio() {
       <footer style={styles.footer}>
         <div style={styles.footerInner}>
           <div>
-            <img src="/rouweb-logo.jpeg" style={styles.footerLogo} />
+            <img src="/rouweb-logo.png" style={styles.footerLogo} />
             <p style={{ opacity: 0.7 }}>
               Premium Web Engineering for Scaling Brands
             </p>
