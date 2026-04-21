@@ -13,28 +13,46 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* LINKS */
 a {
   font-weight: 500;
   color: #646cff;
   text-decoration: inherit;
 }
+
 a:hover {
   color: #535bf2;
 }
 
+/* 🔥 FIXED BODY (THIS WAS YOUR MAIN ISSUE) */
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
   min-height: 100vh;
+  overflow-x: hidden; /* FIXS MOBILE SIDE SCROLL */
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: none;
+  overscroll-behavior-y: none;
+  background-color: #242424;
 }
 
+/* GLOBAL BOX FIX */
+* {
+  box-sizing: border-box;
+}
+
+/* REMOVE FLEX CENTERING (THIS WAS BREAKING YOUR PAGE) */
+html {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* TYPOGRAPHY */
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
 }
 
+/* BUTTONS (UNCHANGED BUT SAFE) */
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -46,22 +64,27 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
 button:hover {
   border-color: #646cff;
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+/* LIGHT MODE SUPPORT (UNCHANGED) */
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
     background-color: #ffffff;
   }
+
   a:hover {
     color: #747bff;
   }
+
   button {
     background-color: #f9f9f9;
   }
