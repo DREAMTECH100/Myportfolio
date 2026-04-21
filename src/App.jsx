@@ -130,9 +130,9 @@ export default function EcommercePortfolio() {
       {/* NAV */}
       <nav style={styles.nav}>
         <img
-          src="/rouweb-logo.png"
-          alt="ROUWEB"
-          style={styles.logo}
+           src={`/rouweb-logo.png?v=${Date.now()}`}
+  alt="ROUWEB"
+  style={styles.logo}
           onError={(e) => (e.target.style.display = "none")}
         />
 
