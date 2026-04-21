@@ -136,11 +136,11 @@ export default function EcommercePortfolio() {
           onError={(e) => (e.target.style.display = "none")}
         />
 
-        <div style={styles.navLinks}>
-          <a href="#work">Work</a>
-          <a href="#services">Services</a>
-          <a href="#contact">Contact</a>
-        </div>
+       <div style={styles.navLinks}>
+  <a href="#work" style={styles.navLinkBtn} className="navBtn">Work</a>
+  <a href="#services" style={styles.navLinkBtn} className="navBtn">Services</a>
+  <a href="#contact" style={styles.navLinkBtn} className="navBtn">Contact</a>
+</div>
       </nav>
 
       {/* BANNER */}
@@ -319,13 +319,27 @@ const styles = {
     filter: "drop-shadow(0 0 8px rgba(0,102,255,0.4))"
   },
 
-  navLinks: {
-    display: "flex",
-    gap: "40px",
-    textTransform: "uppercase",
-    fontSize: "13px",
-    letterSpacing: "1.5px"
-  },
+navLinks: {
+  display: "flex",
+  gap: "5px",
+  textTransform: "uppercase",
+  fontSize: "11px",
+  letterSpacing: "1.2px",
+  alignItems: "center",
+   marginLeft: "30px" 
+},
+
+navLinkBtn: {
+  padding: "10px 16px",
+  borderRadius: "999px",
+  border: "1px solid rgba(77,163,255,0.35)",
+  background: "linear-gradient(145deg, #0a0f1f, #05070d)",
+  color: "#fff",
+  cursor: "pointer",
+  transition: "all 0.3s ease",
+  boxShadow: "0 0 0 rgba(0,0,0,0)",
+  fontWeight: "500"
+},
 
   banner: {
     textAlign: "center",
