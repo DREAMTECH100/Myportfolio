@@ -157,7 +157,7 @@ function StatCard({ value, label, suffix = "", prefix = "", isStatic = false }) 
 }
 
 /* ── Project Card ── */
-function ProjectCard({ project, index }) {
+function ProjectCard({ project }) {
   const [hovered, setHovered] = useState(false);
   return (
     <a
@@ -203,7 +203,7 @@ export default function EcommercePortfolio() {
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener("scroll", onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
@@ -242,7 +242,7 @@ export default function EcommercePortfolio() {
             <span style={{ ...S.brandFallback, display: "none" }}>ROUWEB</span>
           </a>
 
-          <div style={S.navLinks}>
+          <div style={S.navLinks} className="rw-navlinks-desktop">
             {["work", "services", "contact"].map((item) => (
               <a key={item} href={`#${item}`} style={S.navLink} className="rw-navlink">
                 {item.charAt(0).toUpperCase() + item.slice(1)}
@@ -253,7 +253,7 @@ export default function EcommercePortfolio() {
             </a>
           </div>
 
-          <button style={S.hamburger} onClick={() => setMenuOpen(!menuOpen)} aria-label="Menu">
+          <button style={S.hamburger} onClick={() => setMenuOpen(!menuOpen)} aria-label="Menu" className="rw-hamburger">
             <span style={{ ...S.bar, ...(menuOpen ? S.barTopOpen : {}) }} />
             <span style={{ ...S.bar, ...(menuOpen ? S.barMidOpen : {}) }} />
             <span style={{ ...S.bar, ...(menuOpen ? S.barBotOpen : {}) }} />
@@ -280,7 +280,7 @@ export default function EcommercePortfolio() {
 
       {/* ── HERO ── */}
       <section style={S.hero}>
-        <div style={S.heroGrid}>
+        <div style={S.heroGrid} className="rw-heroGrid">
           <div style={S.heroNoise} />
           <div style={S.heroBg} />
 
@@ -315,7 +315,7 @@ export default function EcommercePortfolio() {
             </div>
           </div>
 
-          <div style={S.heroRight} ref={addRef} className="rw-reveal rw-delay1">
+          <div style={S.heroRight} ref={addRef} className="rw-reveal rw-delay1 rw-heroRight">
             <div style={S.heroCard}>
               <div style={S.hcLine}>
                 <span style={S.hcDot} />
@@ -329,7 +329,7 @@ export default function EcommercePortfolio() {
               <div style={S.hcFooter}>
                 <div>
                   <div style={S.hcTitle}>Fragrance Solution</div>
-                  <div style={S.hcSub}>Fintech Platform</div>
+                  <div style={S.hcSub}>E-commerce Platform</div>
                 </div>
                 <a href="https://fragrancesolution.com" target="_blank" rel="noopener noreferrer" style={S.hcLink}>↗</a>
               </div>
@@ -487,16 +487,20 @@ export default function EcommercePortfolio() {
 ───────────────────────────────────────────────────────────── */
 
 const S = {
+  /* ── THE FIX: page div must NOT own scrolling.
+     No overflow-y, no overflow: hidden on the wrapper.
+     Let html/body be the scroll container (handled in CSS below). ── */
   page: {
     fontFamily: "'DM Sans', 'Helvetica Neue', sans-serif",
     background: "#050810",
     color: "#f0f0f0",
-    overflowX: "hidden",
+    position: "relative",
+    width: "100%",
   },
 
   /* NAV */
   nav: {
-    position: "fixed",
+    position: "sticky",          /* sticky not fixed — doesn't break body scroll */
     top: 0,
     left: 0,
     right: 0,
@@ -590,7 +594,6 @@ const S = {
 
   /* BANNER */
   banner: {
-    marginTop: "85px",
     textAlign: "center",
     padding: "11px 20px",
     fontSize: "11px",
@@ -615,7 +618,7 @@ const S = {
   /* HERO */
   hero: {
     position: "relative",
-    overflow: "hidden",
+    /* NO overflow:hidden here — that was blocking touch scroll */
   },
   heroGrid: {
     display: "grid",
@@ -772,15 +775,18 @@ const S = {
 
   /* Marquee */
   marqueeWrap: {
-    overflow: "hidden",
+    /* overflowX only — never overflow:hidden which traps touch events vertically */
+    overflowX: "hidden",
     borderTop: "1px solid rgba(0,102,255,0.1)",
     borderBottom: "1px solid rgba(0,102,255,0.1)",
     padding: "18px 0",
     background: "rgba(0,20,70,0.3)",
+    touchAction: "pan-y",
   },
   marqueeTrack: {
     display: "flex",
     whiteSpace: "nowrap",
+    pointerEvents: "none",
   },
   marqueeItem: {
     display: "inline-flex",
@@ -836,8 +842,6 @@ const S = {
   /* SECTION COMMON */
   section: {
     padding: "110px 7%",
-    maxWidth: "1440px",
-    margin: "0 auto",
     boxSizing: "border-box",
   },
   sectionHead: {
@@ -992,9 +996,9 @@ const S = {
   /* CTA */
   ctaSection: {
     position: "relative",
-    overflow: "hidden",
     padding: "130px 7%",
     textAlign: "center",
+    boxSizing: "border-box",
   },
   ctaBg: {
     position: "absolute",
@@ -1065,7 +1069,33 @@ const S = {
 const CSS = `
   @import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap');
 
-  * { box-sizing: border-box; }
+  /* ── SCROLL FIX: html and body own all scrolling ── */
+  html {
+    height: 100%;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-y;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    min-height: 100%;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-y;
+  }
+
+  /* Ensure React root never traps scroll */
+  #root {
+    min-height: 100vh;
+    touch-action: pan-y;
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+    /* pass touch events up to body so scroll always works */
+    touch-action: pan-y;
+  }
 
   @keyframes rw-blink {
     0%, 100% { opacity: 1; }
@@ -1079,6 +1109,7 @@ const CSS = `
 
   .rw-marquee {
     animation: rw-marquee 28s linear infinite;
+    pointer-events: none;
   }
 
   .rw-reveal {
@@ -1134,12 +1165,35 @@ const CSS = `
     transform: translateY(-4px);
   }
 
+  /* ── RESPONSIVE ── */
   @media (max-width: 900px) {
-    .rw-heroGrid { grid-template-columns: 1fr !important; }
+    .rw-heroGrid {
+      grid-template-columns: 1fr !important;
+      padding: 80px 6% 60px !important;
+      gap: 40px !important;
+    }
+    .rw-heroRight {
+      display: none !important;
+    }
   }
 
   @media (max-width: 768px) {
     .rw-navlinks-desktop { display: none !important; }
     .rw-hamburger { display: flex !important; }
+
+    .rw-heroGrid {
+      grid-template-columns: 1fr !important;
+      padding: 60px 5% 40px !important;
+      gap: 32px !important;
+    }
   }
+
+  @media (max-width: 600px) {
+    .rw-heroGrid {
+      padding: 50px 5% 32px !important;
+    }
+  }
+
+  a { -webkit-tap-highlight-color: transparent; }
+  button { -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
 `;
