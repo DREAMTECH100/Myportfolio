@@ -55,6 +55,14 @@ const PROJECTS = [
     image: "https://images.unsplash.com/photo-1512403754473-27835f7b9984?w=800&q=80",
     tag: "REAL ESTATE",
   },
+ {
+    title: "E-SUPERMARKET TEMPLATE",
+    category: "E-Commerce Platform",
+    link: "https://buymore-pearl.vercel.app/",
+    image: "https://images.unsplash.com/photo-1542838132-92c53300491e",
+    tag: "WHOLESALE",
+  },
+
   {
     title: "Deus Cautela",
     category: "Corporate Website",
