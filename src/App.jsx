@@ -55,15 +55,6 @@ const PROJECTS = [
     image: "https://images.unsplash.com/photo-1512403754473-27835f7b9984?w=800&q=80",
     tag: "REAL ESTATE",
   },
-
- {
-    title: "E-SUPERMARKET TEMPLATE",
-    category: "E-Commerce Platform",
-    link: "https://buymore-pearl.vercel.app/",
-    image: "https://images.unsplash.com/photo-1542838132-92c53300491e",
-    tag: "WHOLESALE",
-  },
-
   {
     title: "Deus Cautela",
     category: "Corporate Website",
@@ -784,13 +775,11 @@ const S = {
 
   /* Marquee */
   marqueeWrap: {
-    /* overflowX only — never overflow:hidden which traps touch events vertically */
     overflowX: "hidden",
     borderTop: "1px solid rgba(0,102,255,0.1)",
     borderBottom: "1px solid rgba(0,102,255,0.1)",
     padding: "18px 0",
     background: "rgba(0,20,70,0.3)",
-    touchAction: "pan-y",
   },
   marqueeTrack: {
     display: "flex",
@@ -1078,32 +1067,34 @@ const S = {
 const CSS = `
   @import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap');
 
-  /* ── SCROLL FIX: html and body own all scrolling ── */
-  html {
+  /* ── ANDROID + iOS SCROLL FIX ── */
+  html, body {
     height: 100%;
-    overflow-y: scroll;
-    -webkit-overflow-scrolling: touch;
-    touch-action: pan-y;
-    scroll-behavior: smooth;
-  }
-
-  body {
-    min-height: 100%;
     overflow-x: hidden;
+    overflow-y: auto;
     -webkit-overflow-scrolling: touch;
-    touch-action: pan-y;
+    scroll-behavior: smooth;
+    overscroll-behavior-y: none;
   }
 
-  /* Ensure React root never traps scroll */
   #root {
     min-height: 100vh;
-    touch-action: pan-y;
+    overflow: visible;
   }
 
   *, *::before, *::after {
     box-sizing: border-box;
-    /* pass touch events up to body so scroll always works */
-    touch-action: pan-y;
+  }
+
+  /* Android needs pan-y on layout containers — NOT on * (breaks Android) */
+  div, section, nav, footer, header, main {
+    touch-action: pan-y pinch-zoom;
+  }
+
+  /* Fast taps on interactive elements */
+  a, button {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
   }
 
   @keyframes rw-blink {
