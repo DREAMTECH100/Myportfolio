@@ -509,7 +509,7 @@ const S = {
   /* NAV */
   nav: {
     position: "sticky",          /* sticky not fixed — doesn't break body scroll */
-    top: 10,
+    top: 15,
     left: 0,
     right: 0,
     zIndex: 9999,
@@ -530,7 +530,7 @@ const S = {
     margin: "0 auto",
   },
   brandWrap: { textDecoration: "none" },
-  logo: { height: "48px", width: "auto", filter: "drop-shadow(0 0 10px rgba(0,102,255,0.5))" },
+  logo: { height: "68px", width: "80px", filter: "drop-shadow(0 0 10px rgba(0,102,255,0.5))" },
   brandFallback: {
     fontFamily: "'Syne', sans-serif",
     fontWeight: "800",
