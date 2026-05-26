@@ -509,7 +509,7 @@ const S = {
   /* NAV */
   nav: {
     position: "sticky",          /* sticky not fixed — doesn't break body scroll */
-    top: 0,
+    top: 10,
     left: 0,
     right: 0,
     zIndex: 9999,
