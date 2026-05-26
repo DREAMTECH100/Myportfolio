@@ -633,7 +633,7 @@ const S = {
     gridTemplateColumns: "1fr 1fr",
     gap: "60px",
     alignItems: "center",
-    padding: "120px 7% 80px",
+    padding: "60px 7% 80px",
     maxWidth: "1440px",
     margin: "0 auto",
     position: "relative",
